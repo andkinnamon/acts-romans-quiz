@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acts & Romans Quiz</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      table {
+        border-collapse: collapse;
+        margin: auto; /* Center the table */
+        margin-top: 0.5em;
+        border: 1px solid;
+      }
+      td {
+        padding: 2px 5px; /* Minimal padding */
+        text-align: center;
+      }
+      label {
+        font-size: 14px; /* Smaller font */
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap; /* Prevents wrapping */
+      }
+      input[type="checkbox"] {
+        transform: scale(0.9); /* Slightly smaller checkboxes */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <h1>Acts & Romans Quiz Practice</h1>
+    </div>
+    <div class="container">
+      <div class="sidebar">
+        <div id="lecture-selection">
+          <h2>Select Lectures:</h2>
+          <table>
+            <tbody id="lecture-table"></tbody>
+          </table>
+        </div>
+
+        <div>
+          <button id="selectAll">(Un)Select All Lectures</button>
+        </div>
+
+        <div id="type-selection">
+          <label
+            ><input type="checkbox" id="filterOutline" checked />Outlines</label
+          >
+          <label
+            ><input type="checkbox" id="filterChapter" checked />Chapters</label
+          >
+        </div>
+
+        <button id="start">Start Quiz</button>
+        <button id="stop" disabled>Stop Quiz</button>
+        <div id="timer"></div>
+      </div>
+      <div id="divider"></div>
+      <div class="main-content">
+        <div id="questionsBox">
+          <div id="questions"></div>
+        </div>
+
+        <div id="answersBox">
+          <div id="answers"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const lectures = ["2"];
+
+      const tableBody = document.getElementById("lecture-table");
+      let row;
+      lectures.forEach((lecture, index) => {
+        if (index % 5 === 0) {
+          row = document.createElement("tr");
+          tableBody.appendChild(row);
+        }
+        const cell = document.createElement("td");
+        cell.innerHTML = `<label><input type="checkbox" class="lecture-checkbox" value="lecture${lecture}" checked> ${lecture}</label>`;
+        row.appendChild(cell);
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
+  <footer>
+    <div class="switch-container">
+      <img src="images/sun.svg" alt="Sun Icon" class="sun-icon" />
+
+      <label class="switch">
+        <input type="checkbox" id="toggle-darkmode" />
+        <span class="slider round"></span>
+      </label>
+
+      <img src="images/moon.svg" alt="Moon Icon" class="moon-icon" />
+    </div>
+    <div id="update">Version: 1.0.0 (Updated January 6, 2026)</div>
+  </footer>
+</html>
